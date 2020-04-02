@@ -45,9 +45,21 @@
 }
 
 .main-container ul li .buttons {
-    max-width: 20%; 
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+}
+
+.main-container ul li .buttons button{
+    height: 50px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 0;
+    border-radius: 4px;
+    background: #FFF;
+    cursor: pointer;
+}
+
+.main-container ul li .buttons button img{
+    max-width: 15%; 
 }

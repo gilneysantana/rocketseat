@@ -3,14 +3,21 @@ import React, {useState} from 'react';
 import './Login.css';
 import logo from '../assets/gilney.PNG';
 
-export default function Login() {
+import api from '../services/api';
+
+export default function Login({history}) {
 
     const [username, setUsername] = useState('');
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault() //envita o comportamento padrão (nesse caso, submeter o form)
 
-        console.log(username);
+        const response = await api.post('/devs', 
+            {username});
+
+        console.log(response);
+
+        history.push('/main');
     }
 
     return (

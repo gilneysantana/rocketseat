@@ -1,15 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './Login.css';
 import logo from '../assets/gilney.PNG';
 
 export default function Login() {
+
+    const [username, setUsername] = useState('');
+
+    function handleSubmit (e) {
+        e.preventDefault() //envita o comportamento padrão (nesse caso, submeter o form)
+
+        console.log(username);
+    }
+
     return (
         <div className="login-container">
-            <form>
+            <form onSubmit={handleSubmit}>
             <img src={logo} alt="nao achei a figura." />
             <input
                 placeholder= "Digite seu Github"
+                value = {username}
+                onChange = { e =>  setUsername(e.target.value) }
             />
             <button type="submit">Enviar</button>
             </form>

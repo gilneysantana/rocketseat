@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import logo from '../assets/gilney.PNG';
 import like from '../assets/like.svg';
@@ -7,15 +7,18 @@ import './Main.css';
 
 export default function Main({ match }) {
 
+    const [users, setUsers] = useState([]);
+
     //essa funcao sera invocada sempre que o id do usuario logado mudar 
-    useEffect( () => {
+    useEffect(() => {
         async function loadUsers() {
             const response = await api.get('/devs', {
                 headers: {
                     user: match.params.id,
                 }
             })
-            console.log(response);
+
+            setUsers(response.data);
         }
 
         loadUsers();
@@ -25,70 +28,23 @@ export default function Main({ match }) {
         <div className="main-container">
             <img src={logo} alt="Tindev" />
             <ul>
-                <li>
-                    <img src="https://avatars2.githubusercontent.com/u/2254731?v=4" alt="Foto" />
-                    <footer>
-                        <strong>Diego</strong>
-                        <p>Note that the development build is not optimized.  To create a production build, use yarn build.</p>
-                    </footer>
-
-                    <div className="buttons">
-                        <button type="button">
-                            <img src={dislike} alt="Dislike" className="button-like" />
-                        </button>
-                        <button type="button">
-                            <img src={like} alt="Like" />
-                        </button>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://avatars2.githubusercontent.com/u/2254731?v=4" alt="Foto" />
-                    <footer>
-                        <strong>Diego</strong>
-                        <p>Note that the development build is not optimized.  To create a production build, use yarn build.</p>
-                    </footer>
-
-                    <div className="buttons">
-                        <button type="button">
-                            <img src={dislike} alt="Dislike" />
-                        </button>
-                        <button type="button">
-                            <img src={like} alt="Like" />
-                        </button>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://avatars2.githubusercontent.com/u/2254731?v=4" alt="Foto" />
-                    <footer>
-                        <strong>Diego</strong>
-                        <p>Note that the development build is not optimized.  To create a production build, use yarn build.</p>
-                    </footer>
-
-                    <div className="buttons">
-                        <button type="button">
-                            <img src={dislike} alt="Dislike" />
-                        </button>
-                        <button type="button">
-                            <img src={like} alt="Like" />
-                        </button>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://avatars2.githubusercontent.com/u/2254731?v=4" alt="Foto" />
-                    <footer>
-                        <strong>Diego</strong>
-                        <p>Note that the development build is not optimized.  To create a production build, use yarn build.</p>
-                    </footer>
-
-                    <div className="buttons">
-                        <button type="button">
-                            <img src={dislike} alt="Dislike" />
-                        </button>
-                        <button type="button">
-                            <img src={like} alt="Like" />
-                        </button>
-                    </div>
-                </li>
+                {users.map((user) => (
+                    <li>
+                        <img src={user.avatar} alt={user.avatar}/>
+                        <footer>
+                            <strong>{user.name}</strong>
+                            <p>{user.bio}</p>
+                        </footer>
+                        <div className="buttons">
+                            <button type="button">
+                                <img src={dislike} alt="Dislike" className="button-like" />
+                            </button>
+                            <button type="button">
+                                <img src={like} alt="Like" />
+                            </button>
+                        </div>
+                    </li>
+                ))}
             </ul>
         </div>
     );

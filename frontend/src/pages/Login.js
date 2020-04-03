@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
+import api from '../services/api';
 
 import './Login.css';
 import logo from '../assets/gilney.PNG';
 
-import api from '../services/api';
 
 export default function Login({history}) {
 

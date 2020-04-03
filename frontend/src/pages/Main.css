@@ -51,6 +51,10 @@
     grid-gap: 10px;
 }
 
+.main-container ul li .buttons button img{
+    max-width: 15%; 
+}
+
 .main-container ul li .buttons button{
     height: 50px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
@@ -60,6 +64,7 @@
     cursor: pointer;
 }
 
-.main-container ul li .buttons button img{
-    max-width: 15%; 
+.main-container ul li .buttons button:hover img{
+    transform: translateY(-5px);
+    transition: all 0.2s;
 }
